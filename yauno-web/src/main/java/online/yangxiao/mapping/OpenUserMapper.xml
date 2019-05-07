@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.yangxiao.dao.OpenUserMapper">
+  <resultMap id="BaseResultMap" type="online.yangxiao.entity.OpenUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="open_id" jdbcType="VARCHAR" property="openId" />
+    <result column="access_token" jdbcType="VARCHAR" property="accessToken" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="open_type" jdbcType="VARCHAR" property="openType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, open_id, access_token, nick_name, avatar, open_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from open_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from open_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="online.yangxiao.entity.OpenUser">
+    insert into open_user (id, user_id, open_id, 
+      access_token, nick_name, avatar, 
+      open_type)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, 
+      #{accessToken,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}, 
+      #{openType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="online.yangxiao.entity.OpenUser">
+    insert into open_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="openId != null">
+        open_id,
+      </if>
+      <if test="accessToken != null">
+        access_token,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="openType != null">
+        open_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null">
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="openType != null">
+        #{openType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="online.yangxiao.entity.OpenUser">
+    update open_user
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null">
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null">
+        access_token = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="openType != null">
+        open_type = #{openType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="online.yangxiao.entity.OpenUser">
+    update open_user
+    set user_id = #{userId,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      access_token = #{accessToken,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      open_type = #{openType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
