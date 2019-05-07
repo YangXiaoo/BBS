@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.yangxiao.dao.ArticleMapper">
+
+	<select id="selectAllByJion" resultMap="articleJoinResMap">
+		SELECT r.id, r.user_id, r.category_id, r.title, r.pic, r.description, r.top, r.content, r.status,
+			r.upvote, r.downvote, r.comment_count , r.browse, r.favorite, r.create_time,
+			r.category_name, u.username
+		FROM (SELECT a.id, a.user_id, a.category_id, a.title, a.pic, a.description, a.top, a.content, a.status,
+			a.upvote, a.downvote, a.comment_count, a.browse, a.favorite, a.create_time,
+			c.category_name
+			FROM article a
+			LEFT JOIN
+			category c
+			ON
+			a.category_id = c.id) r
+		LEFT JOIN user u
+		ON r.user_id = u.id
+	</select>
+
+  <select id="selectAllByTime" resultMap="articleJoinResMap">
+    SELECT r.id, r.user_id, r.category_id, r.title, r.pic, r.description, r.top, r.content, r.status,
+      r.upvote, r.downvote, r.comment_count , r.browse, r.favorite, r.create_time,
+      r.category_name, u.username, u.profile
+    FROM (SELECT a.id, a.user_id, a.category_id, a.title, a.pic, a.description, a.top, a.content, a.status,
+      a.upvote, a.downvote, a.comment_count, a.browse, a.favorite, a.create_time,
+      c.category_name
+      FROM article a
+      LEFT JOIN
+      category c
+      ON
+      a.category_id = c.id) r
+    LEFT JOIN user u
+    ON r.user_id = u.id
+    ORDER BY r.create_time DESC
+  </select>
+
+  <select id="selectAllByBrowse" resultMap="articleJoinResMap">
+    SELECT r.id, r.user_id, r.category_id, r.title, r.pic, r.description, r.top, r.content, r.status,
+      r.upvote, r.downvote, r.comment_count , r.browse, r.favorite, r.create_time,
+      r.category_name, u.username, u.profile
+    FROM (SELECT a.id, a.user_id, a.category_id, a.title, a.pic, a.description, a.top, a.content, a.status,
+      a.upvote, a.downvote, a.comment_count, a.browse, a.favorite, a.create_time,
+      c.category_name
+      FROM article a
+      LEFT JOIN
+      category c
+      ON
+      a.category_id = c.id) r
+    LEFT JOIN user u
+    ON r.user_id = u.id
+    ORDER BY r.browse DESC
+  </select>
+
+  <insert id="insertSelected" parameterType="online.yangxiao.entity.Article">
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="top != null">
+        top,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="upvote != null">
+        upvote,
+      </if>
+      <if test="downvote != null">
+        downvote,
+      </if>
+      <if test="commentCount != null">
+        comment_count,
+      </if>
+      <if test="browse != null">
+        browse,
+      </if>
+      <if test="favorite != null">
+        favorite,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="top != null">
+        #{top,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="upvote != null">
+        #{upvote,jdbcType=INTEGER},
+      </if>
+      <if test="downvote != null">
+        #{downvote,jdbcType=INTEGER},
+      </if>
+      <if test="commentCount != null">
+        #{commentCount,jdbcType=INTEGER},
+      </if>
+      <if test="browse != null">
+        #{browse,jdbcType=INTEGER},
+      </if>
+      <if test="favorite != null">
+        #{favorite,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+	<resultMap id="articleJoinResMap" type="online.yangxiao.entity.Article">
+		<id column="id" property="id"></id>
+		<result column="user_id" property="userId"></result>
+		<result column="category_id" property="categoryId"></result>
+		<result column="title" property="title"></result>
+		<result column="pic" property="pic"></result>
+		<result column="description" property="description"></result>
+		<result column="top" property="top"></result>
+		<result column="content" property="content"></result>
+		<result column="status" property="status"></result>
+		<result column="upvote" property="upvote"></result>
+		<result column="downvote" property="downvote"></result>
+		<result column="comment_count" property="commentCount"></result>
+		<result column="browse" property="commentCount"></result>
+		<result column="favorite" property="favorite"></result>
+		<result column="create_time" property="createTime"></result>
+        <association property="category" column="category_id" javaType="online.yangxiao.entity.Category">
+            <result column="category_name" property="categoryName"></result>
+        </association>
+        <association property="user" column="user_id" javaType="online.yangxiao.entity.User">
+            <result column="username" property="username"></result>
+            <result column="profile" property="profile"></result>
+        </association>
+	</resultMap>
+</mapper>

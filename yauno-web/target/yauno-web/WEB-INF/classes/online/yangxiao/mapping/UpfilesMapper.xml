@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="online.yangxiao.dao.UpfilesMapper">
+  <resultMap id="BaseResultMap" type="online.yangxiao.entity.Upfiles">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="filetype" jdbcType="VARCHAR" property="filetype" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="filepath" jdbcType="VARCHAR" property="filepath" />
+    <result column="filesize" jdbcType="VARCHAR" property="filesize" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, filetype, filename, filepath, filesize, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upfiles
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from upfiles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="online.yangxiao.entity.Upfiles">
+    insert into upfiles (id, filetype, filename, 
+      filepath, filesize, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{filepath,jdbcType=VARCHAR}, #{filesize,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="online.yangxiao.entity.Upfiles">
+    insert into upfiles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="filetype != null">
+        filetype,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="filepath != null">
+        filepath,
+      </if>
+      <if test="filesize != null">
+        filesize,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null">
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="online.yangxiao.entity.Upfiles">
+    update upfiles
+    <set>
+      <if test="filetype != null">
+        filetype = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        filesize = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="online.yangxiao.entity.Upfiles">
+    update upfiles
+    set filetype = #{filetype,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      filesize = #{filesize,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="online.yangxiao.entity.Upfiles">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="filetype" jdbcType="VARCHAR" property="filetype" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="filepath" jdbcType="VARCHAR" property="filepath" />
+    <result column="filesize" jdbcType="VARCHAR" property="filesize" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, filetype, filename, filepath, filesize, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upfiles
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from upfiles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="online.yangxiao.entity.Upfiles">
+    insert into upfiles (id, filetype, filename, 
+      filepath, filesize, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{filepath,jdbcType=VARCHAR}, #{filesize,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="online.yangxiao.entity.Upfiles">
+    insert into upfiles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="filetype != null">
+        filetype,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="filepath != null">
+        filepath,
+      </if>
+      <if test="filesize != null">
+        filesize,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null">
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="online.yangxiao.entity.Upfiles">
+    update upfiles
+    <set>
+      <if test="filetype != null">
+        filetype = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        filesize = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="online.yangxiao.entity.Upfiles">
+    update upfiles
+    set filetype = #{filetype,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      filesize = #{filesize,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="online.yangxiao.entity.Upfiles">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="filetype" jdbcType="VARCHAR" property="filetype" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="filepath" jdbcType="VARCHAR" property="filepath" />
+    <result column="filesize" jdbcType="VARCHAR" property="filesize" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, filetype, filename, filepath, filesize, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from upfiles
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from upfiles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="online.yangxiao.entity.Upfiles">
+    insert into upfiles (id, filetype, filename, 
+      filepath, filesize, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{filetype,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{filepath,jdbcType=VARCHAR}, #{filesize,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="online.yangxiao.entity.Upfiles">
+    insert into upfiles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="filetype != null">
+        filetype,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="filepath != null">
+        filepath,
+      </if>
+      <if test="filesize != null">
+        filesize,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="filetype != null">
+        #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="online.yangxiao.entity.Upfiles">
+    update upfiles
+    <set>
+      <if test="filetype != null">
+        filetype = #{filetype,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="filepath != null">
+        filepath = #{filepath,jdbcType=VARCHAR},
+      </if>
+      <if test="filesize != null">
+        filesize = #{filesize,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="online.yangxiao.entity.Upfiles">
+    update upfiles
+    set filetype = #{filetype,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      filepath = #{filepath,jdbcType=VARCHAR},
+      filesize = #{filesize,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
