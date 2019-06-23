@@ -11,27 +11,45 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import online.yangxiao.common.PageHelper.Page;
 import online.yangxiao.entity.Article;
+import online.yangxiao.entity.User;
 import online.yangxiao.entity.Category;
 import online.yangxiao.service.ArticleService;
 import online.yangxiao.service.CategoryService;
+import online.yangxiao.service.SolrService;
 
 import static online.yangxiao.common.AjaxReturn.*;
 
 import java.util.List;
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController{
 	private final static Logger log = Logger.getLogger(IndexController.class);
 
 	@Autowired
 	private ArticleService articleService;
 
+    @Autowired
+    private SolrService solrService;
 
     @RequestMapping("/index")
     public String index(Model model, 
+    					@RequestParam(value="keyword", required=false) String keyword,
                         @RequestParam(value="pageNum", required=false) Integer pageNum,
                         @RequestParam(value="pageSize", required=false) Integer pageSize) {
         model.addAttribute("info", "info-index");
+        log.info( "===========进入index_list=========" );
+        User user = getCurrentUser();
+        if(user!=null){
+            model.addAttribute( "user",user );
+        }
+        if(keyword.length() == 0){
+            Page<Article> page = solrService.findByKeyWords(keyword, pageNum, pageSize);
+            model.addAttribute("keyword", keyword);
+            model.addAttribute("page", page);
+        }else {
+            Page<Article> page =  articleService.findAll(pageNum, pageSize);
+            model.addAttribute( "page", page );
+        }
         return "../index";
     }
 	

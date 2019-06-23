@@ -3,18 +3,20 @@ package online.yangxiao.controller;
 // import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import online.yangxiao.controller.BaseController;
 import online.yangxiao.entity.User;
 import online.yangxiao.service.UserService;
 import static online.yangxiao.common.AjaxReturn.*;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class LoginController extends BaseController {
@@ -22,6 +24,9 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private RedisTemplate redisTemplate;
 
 	@RequestMapping("/login")
 	@ResponseBody
@@ -37,7 +42,10 @@ public class LoginController extends BaseController {
 			if (!user.getPassword().trim().equals(password.trim())) {
 				map = ajaxReturn("密码错误");
 			} else {
-				map= ajaxReturn("登录成功", "success");
+				map = ajaxReturn("登录成功", "success");
+				log.debug("redis before");
+				redisTemplate.opsForSet().add("onlineUser", String.valueOf(user.getId()));
+				log.debug("redis after");
 				getSession().setAttribute("user", user);
 			}
 		}

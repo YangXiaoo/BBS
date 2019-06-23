@@ -12,10 +12,9 @@ public interface ArticleMapper extends Mapper<Article>{
 	String SELECT_FIELDS = "id, user_id, category_id, title, pic, description, top, content, status, upvote, downvote, comment_count, browse, favorite, create_time";
 	List<Article> selectAllByJion();
 
-	 List<Article> selectAllByTime();
+	List<Article> selectAllByTime();
 
-	 List<Article> selectAllByBrowse();
-
+	List<Article> selectAllByBrowse();
 
     int insertSelected(Article article);
 
@@ -25,4 +24,10 @@ public interface ArticleMapper extends Mapper<Article>{
 
 	@Select({"Select", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE id=#{aid}"})
 	Article selectById(@Param("aid") Integer aid);
+
+	@Select({"Select", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE category_id=#{cid}"})
+	List<Article> selectByCategoryId(@Param("cid") Integer cid);
+
+	@Select({"Select", SELECT_FIELDS, "FROM", TABLE_NAME, "WHERE user_id=#{uid}"})
+	List<Article> selectByUserId(@Param("uid") Integer uid);
 }

@@ -3,6 +3,8 @@ package online.yangxiao.service;
 import online.yangxiao.common.PageHelper;
 import online.yangxiao.entity.User;
 
+import java.util.List;
+
 public interface UserService {
     /**
      * 用户注册
@@ -55,4 +57,6 @@ public interface UserService {
     PageHelper.Page<User> findAll(Integer pageNum, Integer pageSize);
 
     void deleteById(Integer cid);
+
+    List<User> findByTime(Integer limit);
 }

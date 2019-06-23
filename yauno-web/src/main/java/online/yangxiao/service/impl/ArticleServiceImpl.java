@@ -21,15 +21,9 @@ public class ArticleServiceImpl implements ArticleService{
         return articleMapper.insertSelected(article);
     }
 
-    // public int insertArticle(Article article) {
-    //     return articleMapper.insert(article);
-    // }
 
     public List<Article> findByUserId(Integer uid) {
-        Article article = new Article();
-        article.setId(uid);
-        List<Article> list = articleMapper.select(article);
-        return list;
+        return articleMapper.selectByUserId(uid);
     }
 
 
@@ -81,6 +75,22 @@ public class ArticleServiceImpl implements ArticleService{
     public Page<Article> findAllByBrowse(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Article> list = articleMapper.selectAllByTime();
+        Page endPage = PageHelper.endPage();
+
+        return endPage;
+    }
+
+    public Page<Article> findByCategoryId(Integer cid, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Article> list = articleMapper.selectByCategoryId(cid);
+        Page endPage = PageHelper.endPage();
+
+        return endPage;
+    }
+
+    public Page<Article> findByUserId(Integer uid, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Article> list = articleMapper.selectByUserId(uid);
         Page endPage = PageHelper.endPage();
 
         return endPage;

@@ -48,13 +48,6 @@ public class UserServiceImpl implements UserService{
         return userMapper.selectOne(user);
     }
 
-    public User findById(String id) {
-        User user = new User();
-        Integer uid = Integer.parseInt(id);
-        user.setId(uid);
-        return userMapper.selectOne(user);
-    }
-
     @Transactional
     public void deleteByEmail(String email) {
         User user = new User();
@@ -84,5 +77,9 @@ public class UserServiceImpl implements UserService{
 
     public void deleteById(Integer uid) {
         userMapper.deleteUserById(uid);
+    }
+
+    public List<User> findByTime(Integer limit) {
+        return userMapper.selectByTime(limit);
     }
 }

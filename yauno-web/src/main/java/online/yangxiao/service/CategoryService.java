@@ -18,4 +18,6 @@ public interface CategoryService {
     void deleteById(Integer cid);
 
     PageHelper.Page<Category> findAll(Integer pageNum, Integer pageSize);
+
+    List<Category> findByBrowse();
 }

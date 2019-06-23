@@ -31,4 +31,8 @@ public interface ArticleService {
     PageHelper.Page<Article> findAllByTime(Integer pageNum, Integer pageSize);
 
     PageHelper.Page<Article> findAllByBrowse(Integer pageNum, Integer pageSize);
+
+    PageHelper.Page<Article> findByCategoryId(Integer cid, Integer pageNum, Integer pageSize);
+
+    PageHelper.Page<Article> findByUserId(Integer uid, Integer pageNum, Integer pageSize);
 }
